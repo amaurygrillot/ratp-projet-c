@@ -2,138 +2,62 @@
     "result": {
         "stations": [
             {
-                "name": "Chatillon Montrouge",
-                "slug": "chatillon+montrouge"
+                "name": "Mairie des Lilas",
+                "slug": "mairie+des+lilas"
             },
             {
-                "name": "Malakoff-Rue Etienne Dolet",
-                "slug": "malakoff+rue+etienne+dolet"
+                "name": "Porte des Lilas",
+                "slug": "porte+des+lilas"
             },
             {
-                "name": "Malakoff-Plateau de Vanves",
-                "slug": "malakoff+plateau+de+vanves"
+                "name": "Telegraphe",
+                "slug": "telegraphe"
             },
             {
-                "name": "Porte de Vanves",
-                "slug": "porte+de+vanves"
+                "name": "Place des Fetes",
+                "slug": "place+des+fetes"
             },
             {
-                "name": "Plaisance",
-                "slug": "plaisance"
+                "name": "Jourdain",
+                "slug": "jourdain"
             },
             {
-                "name": "Pernety",
-                "slug": "pernety"
+                "name": "Pyrenees",
+                "slug": "pyrenees"
             },
             {
-                "name": "Gaite",
-                "slug": "gaite"
+                "name": "Belleville",
+                "slug": "belleville"
             },
             {
-                "name": "Montparnasse-Bienvenue",
-                "slug": "montparnasse+bienvenue"
+                "name": "Goncourt (Hopital Saint-Louis)",
+                "slug": "goncourt+(hopital+saint+louis)"
             },
             {
-                "name": "Duroc",
-                "slug": "duroc"
+                "name": "Republique",
+                "slug": "republique"
             },
             {
-                "name": "Saint-Francois-Xavier",
-                "slug": "saint+francois+xavier"
+                "name": "Arts-et-Metiers",
+                "slug": "arts+et+metiers"
             },
             {
-                "name": "Varenne",
-                "slug": "varenne"
+                "name": "Rambuteau",
+                "slug": "rambuteau"
             },
             {
-                "name": "Invalides",
-                "slug": "invalides"
+                "name": "Hotel de Ville",
+                "slug": "hotel+de+ville"
             },
             {
-                "name": "Champs-Elysees-Clemenceau",
-                "slug": "champs+elysees+clemenceau"
-            },
-            {
-                "name": "Miromesnil",
-                "slug": "miromesnil"
-            },
-            {
-                "name": "Saint-Lazare",
-                "slug": "saint+lazare"
-            },
-            {
-                "name": "Liege",
-                "slug": "liege"
-            },
-            {
-                "name": "Place de Clichy",
-                "slug": "place+de+clichy"
-            },
-            {
-                "name": "La Fourche",
-                "slug": "la+fourche"
-            },
-            {
-                "name": "Guy-Moquet",
-                "slug": "guy+moquet"
-            },
-            {
-                "name": "Porte de Saint-Ouen",
-                "slug": "porte+de+saint+ouen"
-            },
-            {
-                "name": "Garibaldi",
-                "slug": "garibaldi"
-            },
-            {
-                "name": "Mairie de Saint-Ouen",
-                "slug": "mairie+de+saint+ouen"
-            },
-            {
-                "name": "Carrefour-Pleyel",
-                "slug": "carrefour+pleyel"
-            },
-            {
-                "name": "Saint-Denis - Porte de Paris",
-                "slug": "saint+denis+++porte+de+paris"
-            },
-            {
-                "name": "Basilique de Saint-Denis",
-                "slug": "basilique+de+saint+denis"
-            },
-            {
-                "name": "Saint-Denis-Universite",
-                "slug": "saint+denis+universite"
-            },
-            {
-                "name": "Brochant",
-                "slug": "brochant"
-            },
-            {
-                "name": "Porte de Clichy",
-                "slug": "porte+de+clichy"
-            },
-            {
-                "name": "Mairie de Clichy",
-                "slug": "mairie+de+clichy"
-            },
-            {
-                "name": "Gabriel-Peri",
-                "slug": "gabriel+peri"
-            },
-            {
-                "name": "Les Agnettes",
-                "slug": "les+agnettes"
-            },
-            {
-                "name": "Asnieres-Gennevilliers Les Courtilles",
-                "slug": "asnieres+gennevilliers+les+courtilles"
+                "name": "Chatelet",
+                "slug": "chatelet"
             }
         ]
     },
     "_metadata": {
-        "call": "GET /stations/metros/13",
-        "date": "2020-02-10T23:29:40+01:00",
+        "call": "GET /stations/metros/11",
+        "date": "2020-02-11T22:45:24+01:00",
         "version": 4
     }
 }

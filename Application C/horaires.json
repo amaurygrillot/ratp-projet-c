@@ -2,26 +2,26 @@
     "result": {
         "schedules": [
             {
-                "message": "3 mn",
-                "destination": "Chatillon Montrouge"
+                "message": "4 mn",
+                "destination": "Chatelet"
             },
             {
-                "message": "9 mn",
-                "destination": "Chatillon Montrouge"
+                "message": "10 mn",
+                "destination": "Chatelet"
             },
             {
-                "message": "12 mn",
-                "destination": "Chatillon Montrouge"
+                "message": "16 mn",
+                "destination": "Chatelet"
             },
             {
-                "message": "20 mn",
-                "destination": "Chatillon Montrouge"
+                "message": "22 mn",
+                "destination": "Chatelet"
             }
         ]
     },
     "_metadata": {
-        "call": "GET /schedules/metros/13/pernety/R",
-        "date": "2020-02-10T23:29:42+01:00",
+        "call": "GET /schedules/metros/11/hotel+de+ville/A",
+        "date": "2020-02-11T22:45:29+01:00",
         "version": 4
     }
 }

@@ -2417,7 +2417,7 @@
 1566985682 c:\users\amaury\documents\etudes\application c\callbacks.h
 	<gtk/gtk.h>
 
-1581369594 c:\users\amaury\documents\etudes\application c\functions.h
+1581455811 c:\users\amaury\documents\etudes\application c\functions.h
 	"cJSON.h"
 	<stdint.h>
 
@@ -2434,7 +2434,7 @@
 	<locale.h>
 	"cJSON.h"
 
-1581373493 source:c:\users\amaury\documents\etudes\application c\functions.c
+1581457476 source:c:\users\amaury\documents\etudes\application c\functions.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

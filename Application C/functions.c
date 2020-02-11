@@ -6,8 +6,8 @@
 #include "cJSON.h"
 #include "functions.h"
 #include "common.h"
-
-static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
+int planSize = 0;
+size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 {
     size_t written = fwrite(ptr, size, nmemb, (FILE *)stream);
     return written;
@@ -63,7 +63,7 @@ int write_file_from_link(char *fileName,char *site)
 
 
 
-cJSON *parse_file_lignes(const char *filename, char *postal)
+void parse_file_lignes(const char *filename, char *postal)
 {
     cJSON *parsed = NULL;
     char *content = read_file(filename);//on stocke dans ce char le contenu du fichier
@@ -92,11 +92,17 @@ cJSON *parse_file_lignes(const char *filename, char *postal)
     {
         free(content);
     }
-    return parsed;
+
 }
 
 
-cJSON *parse_file_metro(char *metro)
+void parse_file_metro(char *metro)
+{
+    char **stationsSlug = parse_file_plan(metro);
+    parse_file_horaires(metro,stationsSlug);
+
+}
+char **parse_file_plan(char *metro)
 {
     //printf("ligne : %s",metro);
     char filename[10] = "plan.json";
@@ -121,15 +127,18 @@ cJSON *parse_file_metro(char *metro)
         {
             fprintf(stderr, "Error before: %s\n", error_ptr);
         }//on indique ou se trouve l'erreur
+        return "\nLe plan de la ligne n'a pas pu être chargé\n";
     }//si le contenu n'a pas été reconnu en tant que fichier JSON
+
     else
     {
         cJSON *resultItem = cJSON_GetObjectItem(parsed, "result");
         cJSON *metrosItem = cJSON_GetObjectItem(resultItem, "stations");
         char **stations;
-        stations = malloc(cJSON_GetArraySize(metrosItem)*200);
+        stations = malloc(cJSON_GetArraySize(metrosItem)*200*sizeof(char));
         char **stationsSlug;
-        stationsSlug = malloc(cJSON_GetArraySize(metrosItem)*200);
+        stationsSlug = malloc(cJSON_GetArraySize(metrosItem)*200*sizeof(char));
+        planSize = cJSON_GetArraySize(metrosItem);
         int i, j = 0;;
         for (i = 0 ; i < cJSON_GetArraySize(metrosItem) ; i++)
         {
@@ -140,25 +149,54 @@ cJSON *parse_file_metro(char *metro)
             stationsSlug[i] = inter2;
             printf("\n%s : (%d)",cJSON_GetObjectItem(item, "name")->valuestring,i);
         }//on va parcourir tous les objets du tableau d'objet de notre api
-        printf("\nVeuillez rentrer le numéro de l'arret choisi\n");
-        char number[3];
-        fgets(number,sizeof(number),stdin);
-        if(atoi(number) < cJSON_GetArraySize(metrosItem) && atoi(number) >= 0)
+        free(stations);
+        if (content != NULL)
         {
+            free(content);
+        }
+        return stationsSlug;
+    }
+
+
+}
+void parse_file_horaires(char *metro, char **stationsSlug)
+{
+        printf("\nVeuillez rentrer le numero de l'arret choisi\n");
+        char number[4];
+        fgets(number,sizeof(number),stdin);
+        if(atoi(number) < planSize && atoi(number) >= 0)
+        {
+            printf("\nVous avez choisi la station : %s\n",stationsSlug[atoi(number)]);
+            printf("Si vous voulez les horaires direction %s, tapez 1\n",stationsSlug[0]);
+            printf("Si vous voulez les horaires direction %s, tapez 2\n",stationsSlug[planSize-1]);
+            char number2[2];
+            fgets(number2,sizeof(number2),stdin);
+
             char link2[200];
             strcpy(link2,"https://api-ratp.pierre-grimaud.fr/v4/schedules/metros/");
             strcpy(link2+strlen(link2),metro);
             link2[strlen(link2)-1] = '\0';//car sinon c'est \n et ça bug
             strcpy(link2+strlen(link2),"/");
             strcpy(link2+strlen(link2),stationsSlug[atoi(number)]);
-            strcpy(link2+strlen(link2),"/R");
+            if(atoi(number2) == 1)
+                strcpy(link2+strlen(link2),"/R");
+            else if(atoi(number2) == 2)
+                strcpy(link2+strlen(link2),"/A");
+            else
+            {
+                printf("\nnombre non valide, veuillez recommencer");
+                return;
+            }
             char fileName2[14] =  "horaires.json";
             if(write_file_from_link(fileName2,link2))
             {
                 printf("\nLes horaires n'ont pas pu être chargés\n");
                 return -1;
             }
-                printf("\nVoici les horaires pour la station : %s\n",stations[atoi(number)]);
+            else
+            {
+
+                printf("\nVoici les horaires pour la station : %s\n",stationsSlug[atoi(number)]);
                 cJSON *parsed2 = NULL;
                 char *content2 = read_file(fileName2);//on stocke dans ce char le contenu du fichier
                 parsed2 = cJSON_Parse(content2);//on va maintenant parcourir ce contenu
@@ -179,23 +217,19 @@ cJSON *parse_file_metro(char *metro)
                     for (i = 0 ; i < cJSON_GetArraySize(schedulesItem) ; i++)
                     {
                         cJSON *item = cJSON_GetArrayItem(schedulesItem, i);
-                        printf("\n%s",cJSON_GetObjectItem(item, "message")->valuestring);
-                        printf("\n%s",cJSON_GetObjectItem(item, "destination")->valuestring);
+                        printf("\nTrain dans : %s, direction : %s\n",cJSON_GetObjectItem(item, "message")->valuestring,cJSON_GetObjectItem(item, "destination")->valuestring);
                     }//on va parcourir tous les objets du tableau d'objet de notre api
+                    free(stationsSlug);
                 }
+                if (content2 != NULL)
+                {
+                    free(content2);
+                }
+            }
         }
         else
         {
             printf("\nLes horaires n'ont pas pu être chargés");
         }
-        free(stations);
-    }
 
-    if (content != NULL)
-    {
-        free(content);
-    }
-    return parsed;
 }
-
-

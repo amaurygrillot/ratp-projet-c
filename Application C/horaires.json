@@ -1,0 +1,27 @@
+{
+    "result": {
+        "schedules": [
+            {
+                "message": "3 mn",
+                "destination": "Chatillon Montrouge"
+            },
+            {
+                "message": "9 mn",
+                "destination": "Chatillon Montrouge"
+            },
+            {
+                "message": "12 mn",
+                "destination": "Chatillon Montrouge"
+            },
+            {
+                "message": "20 mn",
+                "destination": "Chatillon Montrouge"
+            }
+        ]
+    },
+    "_metadata": {
+        "call": "GET /schedules/metros/13/pernety/R",
+        "date": "2020-02-10T23:29:42+01:00",
+        "version": 4
+    }
+}
